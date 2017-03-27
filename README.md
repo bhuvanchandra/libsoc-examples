@@ -1,3 +1,13 @@
+##### Setup:
+
+[Aster Carrier Board](https://www.toradex.com/products/carrier-boards/aster-carrier-board)
+
+[Colibri VF61](https://www.toradex.com/computer-on-modules/colibri-arm-family/nxp-freescale-vybrid-vf6xx)
+
+[Pioneer600](http://www.waveshare.com/wiki/Pioneer600)
+
+###<img src="https://github.com/bhuvanchandra/images-repo/blob/master/images-aster-pioneer600/aster-pioneer600.jpg" width="640" height="480">
+
 Build and install the OE-Core aka Yocto SDK, for instructions related to
 building and installing SDK, have a look at this knowledge base [article](http://developer.toradex.com/knowledge-base/linux-sdks).
 After installing SDK, cross-compile libsoc.
