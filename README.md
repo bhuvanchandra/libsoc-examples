@@ -27,7 +27,7 @@ $ sudo make install
 ###### Cross-compiling libsoc examples:
 ```
 $ cd ~/
-$ git clone ...
+$ git clone https://github.com/bhuvanchandra/libsoc-examples.git
 $ cd libsoc-examples
 $ cd ssd1306/
 $ MACHINE=colibri-vf make
