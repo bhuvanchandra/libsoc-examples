@@ -48,6 +48,7 @@ endif
 # Set flags to the compiler and linker
 CFLAGS += -O2 -g -Wall -DNV_IS_LDK=1 $(ARCH_CFLAGS) `$(PKG-CONFIG) --cflags libsoc` --sysroot=$(OECORE_TARGET_SYSROOT) -I$(OECORE_TARGET_SYSROOT)include
 LDFLAGS += $(OECORE_TARGET_SYSROOT)/lib/libsoc.a
+#LDFLAGS += `$(PKG-CONFIG) --libs libsoc`
 
 ##############################################################################
 # Setup your build environment
