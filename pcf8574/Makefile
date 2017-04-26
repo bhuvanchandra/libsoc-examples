@@ -14,8 +14,8 @@
 ##############################################################################
 
 # Set the input source files, the binary name and used libraries to link
-SRCS = oled.o ssd1306.o
-PROG := oled
+SRCS = io.o pcf8574.o
+PROG := io
 LIBS = -lm -lpthread
 
 # Set arch flags
@@ -46,7 +46,7 @@ else
 endif
 
 # Set flags to the compiler and linker
-CFLAGS += -O2 -g -Wall -DNV_IS_LDK=1 $(ARCH_CFLAGS) `$(PKG-CONFIG) --cflags libsoc` --sysroot=$(OECORE_TARGET_SYSROOT) -I$(OECORE_TARGET_SYSROOT)/include
+CFLAGS += -O2 -g -Wall -DNV_IS_LDK=1 $(ARCH_CFLAGS) `$(PKG-CONFIG) --cflags libsoc` --sysroot=$(OECORE_TARGET_SYSROOT) -I$(OECORE_TARGET_SYSROOT)include
 LDFLAGS += $(OECORE_TARGET_SYSROOT)/lib/libsoc.a
 #LDFLAGS += `$(PKG-CONFIG) --libs libsoc`
 
@@ -66,11 +66,11 @@ CROSS_COMPILE ?= $(OECORE_NATIVE_SYSROOT)usr/bin/arm-angstrom-linux-gnueabi/arm-
 
 # Set differencies between native and cross compilation
 ifneq ($(strip $(CROSS_COMPILE)),)
-  LDFLAGS += -L$(OECORE_TARGET_SYSROOT)/usr/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)/usr/lib -L$(OECORE_TARGET_SYSROOT)/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)/lib
+  LDFLAGS += -L$(OECORE_TARGET_SYSROOT)usr/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)usr/lib -L$(OECORE_TARGET_SYSROOT)lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)lib
   BIN_POSTFIX =
   PKG-CONFIG = export PKG_CONFIG_SYSROOT_DIR=$(OECORE_TARGET_SYSROOT); \
-               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)/lib/pkgconfig/; \
-               $(OECORE_NATIVE_SYSROOT)/usr/bin/pkg-config
+               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)lib/pkgconfig/; \
+               $(OECORE_NATIVE_SYSROOT)usr/bin/pkg-config
 else
 # Native compile
   PKG-CONFIG = pkg-config

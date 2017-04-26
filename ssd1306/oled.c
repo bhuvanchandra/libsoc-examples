@@ -1,3 +1,23 @@
+/*
+ * oled.c
+ * A simple test application for SSD1306 OLED disply using libsoc API.
+ *
+ * Copyright (C) 2017 - BhuvanChandra DV <bhuvanchandradv@gmail.com>
+ *
+ * oled is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * oled is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with oled. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

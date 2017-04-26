@@ -20,7 +20,9 @@ $ cd libsoc
 $ . /usr/local/oecore-x86_64/environment-setup-armv7at2hf-neon-angstrom-linux-gnueabi
 $ echo $CC
 arm-angstrom-linux-gnueabi-gcc  -march=armv7-a -mthumb -mfpu=neon  -mfloat-abi=hard --sysroot=/usr/local/oecore-x86_64/sysroots/armv7at2hf-neon-angstrom-linux-gnueabi
+$ autoreconf -i
 $ ./configure --host=arm-angstrom-linux-gnueabi --prefix=/usr/local/oecore-x86_64/sysroots/armv7at2hf-neon-angstrom-linux-gnueabi/
+...
 $ make -j3
 $ sudo make install
 ```

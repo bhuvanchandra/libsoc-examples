@@ -1,3 +1,23 @@
+/*
+ * ssd1306.c
+ * SSD1306 128x64 OLED display helper functions using libsoc API.
+ *
+ * Copyright (C) 2017 - BhuvanChandra DV <bhuvanchandradv@gmail.com>
+ *
+ * ssd1306 is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * ssd1306 is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ssd1306. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
