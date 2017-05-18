@@ -34,7 +34,7 @@ uint8_t s_init(servo *s_motor)
 {
 	uint16_t ret = 0;
 
-	s_motor->pwm_instance = libsoc_pwm_request(s_motor->chip, s_motor->channel, LS_GREEDY);
+	s_motor->pwm_instance = libsoc_pwm_request(s_motor->chip, s_motor->channel, LS_PWM_GREEDY);
 	if (s_motor->pwm_instance == NULL) {
 		perror("PWM request failed");
 		return EXIT_FAILURE;

@@ -52,13 +52,13 @@ int main(void)
 	 * in the kernel device tree or board file as applicable else gpio request
 	 * is bound to fail.
 	 */
-	gpio_interrupt = libsoc_gpio_request(gpio_input, LS_SHARED);
+	gpio_interrupt = libsoc_gpio_request(gpio_input, LS_GPIO_SHARED);
 	if (gpio_interrupt == NULL) {
 		perror("gpio request failed");
 		goto exit;
 	}
 
-	gpio_led = libsoc_gpio_request(led_output, LS_SHARED);
+	gpio_led = libsoc_gpio_request(led_output, LS_GPIO_SHARED);
 	if (gpio_led == NULL) {
 		perror("led gpio request failed");
 		goto exit;
