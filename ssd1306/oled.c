@@ -48,8 +48,8 @@ int main(int argc,char **argv)
 	if (!oled)
 		exit(ENOMEM);
 
-	oled->dc = libsoc_gpio_request(GPIO_DC, LS_SHARED);
-	oled->res = libsoc_gpio_request(GPIO_RES, LS_SHARED);
+	oled->dc = libsoc_gpio_request(GPIO_DC, LS_GPIO_SHARED);
+	oled->res = libsoc_gpio_request(GPIO_RES, LS_GPIO_SHARED);
 
 	if (oled->dc == NULL || oled->res == NULL)
 		goto fail;
