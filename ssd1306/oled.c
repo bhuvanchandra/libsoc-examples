@@ -41,6 +41,9 @@ int main(int argc,char **argv)
 	time_t now;
 	struct tm *timenow;
 	ssd1306 *oled;
+	board_config *config;
+
+	config = libsoc_board_init();
 
 	printf("OLED Test Program !!!\n");
 
@@ -48,8 +51,8 @@ int main(int argc,char **argv)
 	if (!oled)
 		exit(ENOMEM);
 
-	oled->dc = libsoc_gpio_request(GPIO_DC, LS_GPIO_SHARED);
-	oled->res = libsoc_gpio_request(GPIO_RES, LS_GPIO_SHARED);
+	oled->dc = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_32"), LS_GPIO_SHARED);
+	oled->res = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_67"), LS_GPIO_SHARED);
 
 	if (oled->dc == NULL || oled->res == NULL)
 		goto fail;
@@ -88,15 +91,15 @@ int main(int argc,char **argv)
 		time(&now);
 		timenow = localtime(&now);
 
-		SSD1306_bitmap(oled, 0, 2, Singal816, 16, 8); 
-		SSD1306_bitmap(oled, 24, 2, Bluetooth88, 8, 8); 
-		SSD1306_bitmap(oled, 40, 2, Msg816, 16, 8); 
-		SSD1306_bitmap(oled, 64, 2, GPRS88, 8, 8); 
-		SSD1306_bitmap(oled, 90, 2, Alarm88, 8, 8); 
-		SSD1306_bitmap(oled, 112, 2, Bat816, 16, 8); 
+		SSD1306_bitmap(oled, 0, 2, Singal816, 16, 8);
+		SSD1306_bitmap(oled, 24, 2, Bluetooth88, 8, 8);
+		SSD1306_bitmap(oled, 40, 2, Msg816, 16, 8);
+		SSD1306_bitmap(oled, 64, 2, GPRS88, 8, 8);
+		SSD1306_bitmap(oled, 90, 2, Alarm88, 8, 8);
+		SSD1306_bitmap(oled, 112, 2, Bat816, 16, 8);
 
-		SSD1306_string(oled, 0, 52, "MUSIC", 12, 0); 
-		SSD1306_string(oled, 52, 52, "MENU", 12, 0); 
+		SSD1306_string(oled, 0, 52, "MUSIC", 12, 0);
+		SSD1306_string(oled, 52, 52, "MENU", 12, 0);
 		SSD1306_string(oled, 98, 52, "PHONE", 12, 0);
 
 		SSD1306_char3216(oled, 0,16, value[timenow->tm_hour/10]);

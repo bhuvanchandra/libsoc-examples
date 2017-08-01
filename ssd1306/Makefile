@@ -69,7 +69,7 @@ ifneq ($(strip $(CROSS_COMPILE)),)
   LDFLAGS += -L$(OECORE_TARGET_SYSROOT)/usr/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)/usr/lib -L$(OECORE_TARGET_SYSROOT)/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)/lib
   BIN_POSTFIX =
   PKG-CONFIG = export PKG_CONFIG_SYSROOT_DIR=$(OECORE_TARGET_SYSROOT); \
-               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)/lib/pkgconfig/; \
+               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)/usr/lib/pkgconfig/; \
                $(OECORE_NATIVE_SYSROOT)/usr/bin/pkg-config
 else
 # Native compile

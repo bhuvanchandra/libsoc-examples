@@ -27,8 +27,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#include "libsoc_spi.h"
-#include "libsoc_gpio.h"
 #include "ssd1306.h"
 
 #define width		128
@@ -45,7 +43,7 @@ void command(ssd1306 *oled, char cmd)
 }
 
 void SSD1306_begin(ssd1306 *oled)
-{	
+{
 	libsoc_gpio_set_level(oled->res, HIGH);
 	usleep(1000);
 	libsoc_gpio_set_level(oled->res, LOW);
@@ -116,7 +114,7 @@ void SSD1306_char1616(ssd1306 *oled,
 	for (i = 0; i < 32; i ++) {
 		chTemp = Font1612[chChar - 0x30][i];
 		for (j = 0; j < 8; j ++) {
-			chMode = chTemp & 0x80? 1 : 0; 
+			chMode = chTemp & 0x80? 1 : 0;
 			SSD1306_pixel(oled, x, y, chMode);
 			chTemp <<= 1;
 			y ++;
@@ -140,7 +138,7 @@ void SSD1306_char3216(ssd1306 *oled,
 	for (i = 0; i < 64; i ++) {
 		chTemp = Font3216[chChar - 0x30][i];
 		for (j = 0; j < 8; j ++) {
-			chMode = chTemp & 0x80 ? 1 : 0; 
+			chMode = chTemp & 0x80 ? 1 : 0;
 			SSD1306_pixel(oled, x, y, chMode);
 			chTemp <<= 1;
 			y ++;
@@ -168,7 +166,7 @@ void SSD1306_char(ssd1306 *oled,
 		if (size == 12) {
 			if (mode)temp = Font1206[ch][i];
 			else temp = ~Font1206[ch][i];
-		} else {			
+		} else {
 			if (mode)
 				temp = Font1608[ch][i];
 			else
@@ -199,7 +197,7 @@ void SSD1306_string(ssd1306 *oled,
 					uint8_t Size,
 					uint8_t Mode)
 {
-    while (*pString != '\0') {       
+    while (*pString != '\0') {
         if (x > (width - Size / 2)) {
 			x = 0;
 			y += Size;
@@ -207,7 +205,7 @@ void SSD1306_string(ssd1306 *oled,
 				y = x = 0;
 			}
 		}
-		
+
         SSD1306_char(oled, x, y, *pString, Size, Mode);
         x += Size / 2;
         pString ++;
@@ -228,7 +226,7 @@ void SSD1306_bitmap(ssd1306 *oled,
 			if (*(pBmp + j * byteWidth + i / 8) & (128 >> (i & 7)))
 				SSD1306_pixel(oled, x + i, y + j, 1);
 		}
-	}		
+	}
 }
 
 void SSD1306_display(ssd1306 *oled)

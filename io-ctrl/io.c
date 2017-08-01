@@ -9,6 +9,7 @@
 #include <unistd.h>
 
 #include "libsoc_gpio.h"
+#include "libsoc_board.h"
 
 /*
  * libsoc GPIO documentation: http://jackmitch.github.io/libsoc/c/gpio/#gpio
@@ -19,6 +20,7 @@ static uint32_t times = 0;
 
 gpio *gpio_interrupt = NULL;
 gpio *gpio_led = NULL;
+board_config *config;
 
 int gpio_interrupt_callback(void* arg)
 {
@@ -37,28 +39,22 @@ int gpio_interrupt_callback(void* arg)
 
 int main(void)
 {
-	uint32_t gpio_input;
-	uint32_t led_output;
 	uint32_t ret = 0;
 
-	printf("Enter the GPIO number to use as interrupt:\t");
-	scanf("%d", &gpio_input);
-
-	printf("Enter the GPIO number used for LED output:\t");
-	scanf("%d", &led_output);
+	config = libsoc_board_init();
 
 	/*
 	 * It is expected that the gpio being requested is pin multiplexed correctly
 	 * in the kernel device tree or board file as applicable else gpio request
 	 * is bound to fail.
 	 */
-	gpio_interrupt = libsoc_gpio_request(gpio_input, LS_GPIO_SHARED);
+	gpio_interrupt = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_63"), LS_GPIO_SHARED);
 	if (gpio_interrupt == NULL) {
 		perror("gpio request failed");
 		goto exit;
 	}
 
-	gpio_led = libsoc_gpio_request(led_output, LS_GPIO_SHARED);
+	gpio_led = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_55"), LS_GPIO_SHARED);
 	if (gpio_led == NULL) {
 		perror("led gpio request failed");
 		goto exit;

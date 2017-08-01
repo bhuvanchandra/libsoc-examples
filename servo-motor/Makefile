@@ -47,8 +47,8 @@ endif
 
 # Set flags to the compiler and linker
 CFLAGS += -O2 -g -Wall -DNV_IS_LDK=1 $(ARCH_CFLAGS) `$(PKG-CONFIG) --cflags libsoc` --sysroot=$(OECORE_TARGET_SYSROOT) -I$(OECORE_TARGET_SYSROOT)include
-LDFLAGS += $(OECORE_TARGET_SYSROOT)/lib/libsoc.a
-#LDFLAGS += `$(PKG-CONFIG) --libs libsoc`
+#LDFLAGS += $(OECORE_TARGET_SYSROOT)/lib/libsoc.a
+LDFLAGS += `$(PKG-CONFIG) --libs libsoc`
 
 ##############################################################################
 # Setup your build environment
@@ -69,7 +69,7 @@ ifneq ($(strip $(CROSS_COMPILE)),)
   LDFLAGS += -L$(OECORE_TARGET_SYSROOT)usr/lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)usr/lib -L$(OECORE_TARGET_SYSROOT)lib -Wl,-rpath-link,$(OECORE_TARGET_SYSROOT)lib
   BIN_POSTFIX =
   PKG-CONFIG = export PKG_CONFIG_SYSROOT_DIR=$(OECORE_TARGET_SYSROOT); \
-               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)lib/pkgconfig/; \
+               export PKG_CONFIG_PATH=$(OECORE_TARGET_SYSROOT)usr/lib/pkgconfig/; \
                $(OECORE_NATIVE_SYSROOT)usr/bin/pkg-config
 else
 # Native compile
