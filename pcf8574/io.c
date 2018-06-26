@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 			return -1;
 	}
 
-	i2c_pcf8574 = pcf8574_init(0, PCF8574_ADDRESS);
+	i2c_pcf8574 = pcf8574_init(1, PCF8574_ADDRESS);
 	if (i2c_pcf8574 == NULL)
 		return EXIT_FAILURE;
 

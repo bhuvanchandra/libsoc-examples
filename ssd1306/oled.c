@@ -28,10 +28,10 @@
 
 #include "ssd1306.h"
 
-#define GPIO_DC			82 /* SODIMM 32 */
-#define GPIO_RES		31 /* SODIMM 67 */
+#define GPIO_DC			16 /* P1_36 */
+#define GPIO_RES		19 /* P1_35 */
 
-#define SPI_DEVICE		1
+#define SPI_DEVICE		0
 #define CHIP_SELECT		0
 
 char value[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -51,8 +51,8 @@ int main(int argc,char **argv)
 	if (!oled)
 		exit(ENOMEM);
 
-	oled->dc = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_32"), LS_GPIO_SHARED);
-	oled->res = libsoc_gpio_request(libsoc_board_gpio_id(config, "SODIMM_67"), LS_GPIO_SHARED);
+	oled->dc = libsoc_gpio_request(libsoc_board_gpio_id(config, "P1_36"), LS_GPIO_SHARED);
+	oled->res = libsoc_gpio_request(libsoc_board_gpio_id(config, "P1_35"), LS_GPIO_SHARED);
 
 	if (oled->dc == NULL || oled->res == NULL)
 		goto fail;
